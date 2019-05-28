@@ -2,7 +2,6 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicArrowButton;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
 import static java.lang.Integer.parseInt;
 
@@ -10,46 +9,39 @@ import static java.lang.Integer.parseInt;
  * Wyglada jak to w Linuxie tylko bez okna do wyboru standardowych opcji
  * @author Michal Makos
  */
-public class Settings extends View
+class Settings extends View
 {
-    GridBagConstraints gbc = new GridBagConstraints();
+    private GridBagConstraints gbc = new GridBagConstraints();
 
     /**Panel zawierajacy ustawienia min*/
-    JPanel minesPanel;
+    private JPanel minesPanel;
     /**Panel zawierajacy ustawienia szerokosci*/
-    JPanel widthPanel;
+    private JPanel widthPanel;
     /**Panel zawierajacy ustawienia wysokosci*/
-    JPanel heightPanel;
-
-    /**Pole wyswietlajace napis "ilosc min"*/
-    JLabel minesLabel;
-    /**Pole wyswietlajace napis "szerokosc"*/
-    JLabel widthLabel;
-    /**Pole wyswietlajace napis "wysokosc"*/
-    JLabel heightLabel;
+    private JPanel heightPanel;
 
     /**Pole do ustawienia liczby min*/
-    JTextField minesField;
+    private JTextField minesField;
     /**Pole do ustawienia szerokosci planszy*/
-    JTextField widthField;
+    private JTextField widthField;
     /**Pole do ustawienia wysokosci planszy*/
-    JTextField heightField;
+    private JTextField heightField;
 
     /**Strzalka do zwiekszania liczby min*/
-    BasicArrowButton minesUpArrow;
+    private BasicArrowButton minesUpArrow;
     /**Strzalka do zmniejszania liczby min*/
-    BasicArrowButton minesDownArrow;
+    private BasicArrowButton minesDownArrow;
     /**Strzalka do zwiekszania wysokosci pola*/
-    BasicArrowButton heightUpArrow;
+    private BasicArrowButton heightUpArrow;
     /**Strzalka do zmniejszania wysokosci pola*/
-    BasicArrowButton heightDownArrow;
+    private BasicArrowButton heightDownArrow;
     /**Strzalka do zwiekszania szerokosci pola*/
-    BasicArrowButton widthUpArrow;
+    private BasicArrowButton widthUpArrow;
     /**Strzalka do zmniejszania szerokosci pola*/
-    BasicArrowButton widthDownArrow;
+    private BasicArrowButton widthDownArrow;
 
     /**Przycisk do rozpoczecia gry*/
-    JButton startButton;
+    private JButton startButton;
 
     /**Konstruktor wyswietla wszystkie ustawienia
      *
@@ -57,7 +49,7 @@ public class Settings extends View
      * @param width domyslna szerokosc
      * @param height domyslna wysokosc
      */
-    public Settings(int minesQuantity, int width, int height )
+    Settings(int minesQuantity, int width, int height )
     {
         addWidthFields( width );
         addHeightFields( height );
@@ -70,7 +62,7 @@ public class Settings extends View
         this.frame.add( minesPanel );
         this.frame.add( startButton );
         this.frame.setSize( 300,300 );
-        this.frame.setTitle( "Settings" );
+        this.frame.setTitle( "Ustawienia" );
         this.frame.setVisible( true );
     }
 
@@ -78,11 +70,10 @@ public class Settings extends View
      *
      * @param width poczatkowa wartosc wpisana w pole
      */
-    void addWidthFields( int width )
+    private void addWidthFields( int width )
     {
-        widthPanel = new JPanel();
-        widthPanel.setLayout( new GridBagLayout() );
-        widthLabel = new JLabel("Szerokosc pola: " );
+        widthPanel = new JPanel( new GridBagLayout() );
+        JLabel widthLabel = new JLabel("Szerokosc pola: " );
         widthField = new JTextField( String.valueOf( width ), 2 );
         widthUpArrow = new BasicArrowButton( SwingConstants.NORTH );
         widthUpArrow.setActionCommand( "upWidth" );
@@ -108,11 +99,10 @@ public class Settings extends View
      *
      * @param height poczatkowa wartosc wpisana w pole
      */
-    void addHeightFields( int height )
+    private void addHeightFields( int height )
     {
-        heightPanel = new JPanel();
-        heightPanel.setLayout( new GridBagLayout() );
-        heightLabel = new JLabel("Wysokosc pola: " );
+        heightPanel = new JPanel( new GridBagLayout() );
+        JLabel heightLabel = new JLabel("Wysokosc pola: " );
         heightField = new JTextField( String.valueOf( height ), 2 );
         heightUpArrow = new BasicArrowButton( SwingConstants.NORTH );
         heightUpArrow.setActionCommand( "upHeight" );
@@ -138,11 +128,10 @@ public class Settings extends View
      *
      * @param minesQuantity poczatkowa wartosc wpisana w pole
      */
-    void addMinesFields( int minesQuantity )
+    private void addMinesFields( int minesQuantity )
     {
-        minesPanel = new JPanel();
-        minesPanel.setLayout( new GridBagLayout() );
-        minesLabel = new JLabel("Procentowa ilosc min: " );
+        minesPanel = new JPanel( new GridBagLayout() );
+        JLabel minesLabel = new JLabel("Procentowa ilosc min: " );
         minesField = new JTextField( String.valueOf( minesQuantity ), 2 );
         minesUpArrow = new BasicArrowButton( SwingConstants.NORTH );
         minesUpArrow.setActionCommand( "upMines" );
@@ -165,7 +154,8 @@ public class Settings extends View
         minesPanel.add( minesDownArrow, gbc );
     }
 
-    void addStartButton()
+    /**Funkcja dodaje przycisk rozpoczynajacy gre*/
+    private void addStartButton()
     {
         startButton = new JButton( "Start" );
         startButton.setActionCommand( "start" );
@@ -190,7 +180,7 @@ public class Settings extends View
      *
      * @param width dana, ktora zostanie wpisana
      */
-    void setWidth( int width )
+    public void setWidth( int width )
     {
         widthField.setText( "" + width );
     }
@@ -198,7 +188,7 @@ public class Settings extends View
      *
      * @param height dana, ktora zostanie wpisana
      */
-    void setHeight( int height )
+    public void setHeight( int height )
     {
         heightField.setText( "" + height );
     }
@@ -206,39 +196,39 @@ public class Settings extends View
      *
      * @param mines dana, ktora zostanie wpisana
      */
-    void setMines( int mines )
+    public void setMines( int mines )
     {
         minesField.setText( "" + mines );
     }
     /**Funkcja sprawdza poprawnosc wprowadzonych danych i zwraca wpisana szerokosc*/
-    int getWidth()
+    public int getWidth()
     {
-        int i = 0;
+        int i;
         try{
             i = parseInt( widthField.getText() );
-        }catch( NumberFormatException e ){}
-        if( i <= 50 && i >= 4 )
+        }catch( NumberFormatException e ){ return 0; }
+        if( i <= 50 && i >= 8 )
             return i;
         return 0;
     }
     /**Funkcja sprawdza poprawnosc wprowadzonych danych i zwraca wpisana wysokosc*/
-    int getHeight()
+    public int getHeight()
     {
-        int i = 0;
+        int i;
         try{
             i = parseInt( heightField.getText() );
-        }catch( NumberFormatException e ){}
-        if( i <= 50 && i >= 4 )
+        }catch( NumberFormatException e ){ return 0; }
+        if( i <= 50 && i >= 8 )
             return i;
         return 0;
     }
     /**Funkcja sprawdza poprawnosc wprowadzonych danych i zwraca wpisana ilosc min*/
-    int getMines()
+    public int getMines()
     {
-        int i = 0;
+        int i;
         try{
             i = parseInt( minesField.getText() );
-        }catch( NumberFormatException e ){}
+        }catch( NumberFormatException e ){ return 0; }
         if( i <= 80 && i >= 10)
             return i;
         return 0;
