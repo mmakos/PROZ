@@ -139,7 +139,7 @@ class Controller{
             int[] hash = view.buttonHash( mouseEvent.getSource().hashCode() );
             if( mouseEvent.getButton() == MouseEvent.BUTTON1 && model.getDisplayed( hash[ 0 ], hash[ 1 ] ) != 1 ){
                 int stan = model.clickButton( hash[ 0 ], hash[ 1 ], view );
-                switch ( stan ){
+                switch( stan ){
                     case -3:
                         view.drawLabelField( model.putMines( hash[ 0 ], hash[ 1 ] ) );
                         model.clickButton( hash[ 0 ], hash[ 1 ], view );

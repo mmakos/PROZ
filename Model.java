@@ -164,12 +164,12 @@ class Model
      */
     int clickButton( int x, int y, View view )
     {
-        if( !fieldDrawed )
-            return -3;
         if( x == -2 && y == -2 )
             return -2;
         if( x == -1 && y == -1 )
             return -1;
+        if( !fieldDrawed )
+            return -3;
         if( minesField[ x ][ y ] == 9 ){
             view.setImageLabel( x, y, 10 );
             view.openAllMines( minesField, displayed );
