@@ -6,7 +6,7 @@ import java.awt.event.MouseListener;
 /**Klasa Kontroler tworzy rozgrywke i zawiaduje tym co dzieje sie w klasie Model oraz View*/
 class Controller{
     /**Obiekt klasy Model*/
-    private Model model;
+    private final Model model;
     /**Obiekt klasy View*/
     private View view;
     /**Obiekt klasy wewnetrzej GameListener*/
@@ -16,8 +16,8 @@ class Controller{
      * Tworzy nowy Model z domyslnymi wartosciami, nowy widok (ustawienia) i wlacza nasluchiwanie
      */
     private Controller(){
-        model = new Model( 16, 16, 15 );
-        view = new Settings( 15, 16, 16 );
+        model = new Model( 16, 16, 20 );
+        view = new Settings( 20, 16, 16 );
         view.listener( new SettingsListener() );
         view.frame.addMouseListener( new SettingsMouseListener() );
     }
@@ -64,7 +64,7 @@ class Controller{
     private void winGame()
     {
         view.removeButtonListeners( listener );
-        view.setEndImage( "img/win.png" );
+        view.setEndImage( "src/img/win.png" );
     }
 
     /**Klasa nasluchuje klikniec w przyciski ustawien wywoluje inkrementajce i dekrementacje ustawien jesli nacisnieto strzalki*/
@@ -73,7 +73,7 @@ class Controller{
         public void actionPerformed( ActionEvent actionEvent ){
             String actionCommand = actionEvent.getActionCommand();
 
-            switch ( actionCommand ){
+            switch( actionCommand ){
                 case "upWidth":
                     view.setWidth( model.setWidth( -1 ) );
                     break;

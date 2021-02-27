@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
  */
 class Settings extends View
 {
-    private GridBagConstraints gbc = new GridBagConstraints();
+    private final GridBagConstraints gbc = new GridBagConstraints();
 
     /**Panel zawierajacy ustawienia min*/
     private JPanel minesPanel;
@@ -63,6 +63,7 @@ class Settings extends View
         this.frame.add( startButton );
         this.frame.setSize( 300,300 );
         this.frame.setTitle( "Ustawienia" );
+        this.frame.setIconImage( new ImageIcon( getClass().getResource( "img/icon.png" ) ).getImage() );
         this.frame.setVisible( true );
     }
 

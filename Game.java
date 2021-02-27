@@ -25,9 +25,9 @@ public class Game extends View
     /**Wymiary pojedynczego kwadratu*/
     private int fieldSide;
     /**Wysokosc pola min*/
-    private int fieldWidth;
+    private final int fieldWidth;
     /**Szerokosc pola min*/
-    private int fieldHeight;
+    private final int fieldHeight;
     /**Ilosc min pozostalych do zaflagowania*/
     private int minesLeftCounter;
 
@@ -63,6 +63,7 @@ public class Game extends View
         drawField();
         drawOptions( mines );
         this.frame.setTitle( "Gra" );
+        this.frame.setIconImage( new ImageIcon( getClass().getResource( "img/icon.png" ) ).getImage() );
         this.frame.setVisible( true );
     }
 
@@ -88,7 +89,8 @@ public class Game extends View
         this.frame.add( field, BorderLayout.CENTER );
     }
 
-    /**Funkcja rysuje opcje dostepne obok pola minowego*/
+    /**Funkcja rysuje opcje dostepne obok pola minowego
+     * @param mines ile min pozostało do oznaczenia*/
     private void drawOptions( int mines )
     {
         options = new JPanel( new GridLayout( fieldHeight / 2, 1 ) );
@@ -236,7 +238,8 @@ public class Game extends View
      */
     private ImageIcon getResizedImage( String name, int width, int height )
     {
-        return new ImageIcon( new ImageIcon( name ).getImage().getScaledInstance( width, height, Image.SCALE_DEFAULT ) );
+        return new ImageIcon( new ImageIcon( getClass().getResource( name ) ).
+                getImage().getScaledInstance( width, height, Image.SCALE_DEFAULT ) );
     }
 
     /**Funkcja (wywolywana przy zwyciestwie) ustawia na bocznym panelu obrazek informujacy o zwyciestwie
