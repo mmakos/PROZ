@@ -1,4 +1,4 @@
-# Saper (Miner)
+# Saper (Minesweeper)
 This is my version of the popular Miner game.
 
 For more information, please visit [my webstite](http://www.mmakos.pl/programming/saper/).
